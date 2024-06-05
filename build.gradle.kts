@@ -17,7 +17,18 @@ repositories {
 	mavenCentral()
 }
 
+configurations.implementation {
+	exclude(group = "ch.qos.logback")
+}
+
 dependencies {
+	implementation("io.klogging:klogging-spring-boot-starter:0.5.13")
+	// Other runtime dependencies.
+
+	//implementation("org.thymeleaf:thymeleaf-spring5:3.1.2.RELEASE")
+	//implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf:3.3.0")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -29,9 +40,13 @@ dependencies {
 	runtimeOnly("io.r2dbc:r2dbc-h2")
 	runtimeOnly("org.postgresql:postgresql")
 	runtimeOnly("org.postgresql:r2dbc-postgresql")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude(group = "ch.qos.logback")
+	}
 }
 
 tasks.withType<KotlinCompile> {
