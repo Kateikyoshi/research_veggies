@@ -28,6 +28,7 @@ dependencies {
 	//implementation("org.thymeleaf:thymeleaf-spring5:3.1.2.RELEASE")
 	//implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf:3.3.0")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	implementation("org.springframework.boot:spring-boot-starter-security")

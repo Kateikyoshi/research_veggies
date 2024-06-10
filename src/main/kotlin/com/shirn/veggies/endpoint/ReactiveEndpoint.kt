@@ -16,11 +16,14 @@ import org.springframework.web.reactive.function.server.coRouter
 class MyRoutingConfiguration {
 
     @Bean
-    fun monoRouterFunction(veggieController: VeggieController) = coRouter {
+    fun monoRouterFunction(veggieController: VeggieController, userController: UserController) = coRouter {
         accept(APPLICATION_JSON).nest {
             GET("/veggie/{id}", veggieController::getVeggie)
             POST("/veggie", veggieController::createVeggie)
         }
+        GET("/register", userController::provideRegisterPage)
+        POST("/register", userController::register)
+
         GET("/", veggieController::provideIndex)
         GET("/veggie", veggieController::getAllVeggies)
         POST("/veggieForm", veggieController::createVeggieForm)
