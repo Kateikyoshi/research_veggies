@@ -12,5 +12,5 @@ spring:
 jwt:
   secret:
     #generate this with openssl or smth
-    value: FSDGJSGASJG66235RSEG
+    value: FSDGJSGASJG66235RSEGGJDSFSHGH34536
     alg: HS256

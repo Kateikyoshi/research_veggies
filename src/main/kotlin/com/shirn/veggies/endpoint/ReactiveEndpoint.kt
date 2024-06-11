@@ -17,8 +17,8 @@ class MyRoutingConfiguration {
 
     @Bean
     fun monoRouterFunction(veggieController: VeggieController, userController: UserController) = coRouter {
+        GET("api/veggie", queryParam("id") { true }, veggieController::getVeggieApi2)
         accept(APPLICATION_JSON).nest {
-            GET("api/veggie/{id}", veggieController::getVeggieApi)
             POST("api/veggie", veggieController::createVeggieApi)
             POST("api/user", userController::getUserApi)
         }

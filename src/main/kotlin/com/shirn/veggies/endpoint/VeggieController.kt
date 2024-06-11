@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.ServerResponse.ok
+import kotlin.jvm.optionals.getOrNull
 
 @Component
 class VeggieController(
@@ -28,6 +29,13 @@ class VeggieController(
                 "veggieDb" to VeggieDb()
             )
         )
+    }
+
+    suspend fun getVeggieApi2(request: ServerRequest): ServerResponse {
+
+        val id = request.queryParam("id").getOrNull() ?: throw IllegalArgumentException("Id can't be null")
+
+        return ok().bodyValueAndAwait(veggieRepository.findById(id.toLong()) ?: VeggieDb())
     }
 
     suspend fun getVeggieApi(request: ServerRequest): ServerResponse {
