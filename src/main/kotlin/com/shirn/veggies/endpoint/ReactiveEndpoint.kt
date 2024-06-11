@@ -20,6 +20,7 @@ class MyRoutingConfiguration {
         accept(APPLICATION_JSON).nest {
             GET("api/veggie/{id}", veggieController::getVeggieApi)
             POST("api/veggie", veggieController::createVeggieApi)
+            POST("api/user", userController::getUserApi)
         }
         GET("/register", userController::provideRegisterPage)
         POST("/register", userController::register)

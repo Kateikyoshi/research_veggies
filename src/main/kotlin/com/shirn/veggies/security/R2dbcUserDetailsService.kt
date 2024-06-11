@@ -15,7 +15,7 @@ class R2dbcUserDetailsService(private val userRepository: UserRepository): React
             User.builder()
                 .username(it.name)
                 .password(it.password)
-                .authorities("SCOPE_BASIC")
+                .authorities(it.role)
                 .build()
         }
     }

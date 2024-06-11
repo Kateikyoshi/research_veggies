@@ -29,6 +29,7 @@ dependencies {
 	//implementation("org.thymeleaf:thymeleaf:3.1.2.RELEASE")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf:3.3.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("com.auth0:java-jwt:4.4.0")
 
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	implementation("org.springframework.boot:spring-boot-starter-security")

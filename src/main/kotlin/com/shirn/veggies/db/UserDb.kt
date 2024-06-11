@@ -20,5 +20,7 @@ data class UserDb(
     @Column("c_password")
     val password: String? = null,
     @Column("c_role")
-    val role: String? = null
+    val role: String? = null,
+    @Column("c_jwt")
+    val jwt: String? = null
 )

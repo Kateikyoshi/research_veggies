@@ -8,3 +8,9 @@ spring:
   sql:
     init:
       platform: h2
+
+jwt:
+  secret:
+    #generate this with openssl or smth
+    value: FSDGJSGASJG66235RSEG
+    alg: HS256
