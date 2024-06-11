@@ -30,7 +30,7 @@ class VeggieController(
         )
     }
 
-    suspend fun getVeggie(request: ServerRequest): ServerResponse {
+    suspend fun getVeggieApi(request: ServerRequest): ServerResponse {
         val body = request.awaitBodyOrNull<String>() ?: throw IllegalStateException("Body can't be null")
         val node = mapper.readTree(body) ?: throw IllegalStateException("Tree can't be null")
         val id = node.get("id").longValue()
@@ -69,7 +69,7 @@ class VeggieController(
         )
     }
 
-    suspend fun createVeggie(request: ServerRequest): ServerResponse {
+    suspend fun createVeggieApi(request: ServerRequest): ServerResponse {
 
         val body = request.awaitBodyOrNull<String>() ?: throw IllegalStateException("Body can't be null")
         val node = mapper.readTree(body) ?: throw IllegalStateException("Tree can't be null")

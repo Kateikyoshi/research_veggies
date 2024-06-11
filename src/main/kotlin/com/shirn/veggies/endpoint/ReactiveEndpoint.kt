@@ -18,8 +18,8 @@ class MyRoutingConfiguration {
     @Bean
     fun monoRouterFunction(veggieController: VeggieController, userController: UserController) = coRouter {
         accept(APPLICATION_JSON).nest {
-            GET("/veggie/{id}", veggieController::getVeggie)
-            POST("/veggie", veggieController::createVeggie)
+            GET("api/veggie/{id}", veggieController::getVeggieApi)
+            POST("api/veggie", veggieController::createVeggieApi)
         }
         GET("/register", userController::provideRegisterPage)
         POST("/register", userController::register)
@@ -28,7 +28,6 @@ class MyRoutingConfiguration {
         GET("/veggie", veggieController::getAllVeggies)
         POST("/veggieForm", veggieController::createVeggieForm)
         GET("/veggie-manage", veggieController::provideVeggiePage)
-
 
         onError<Throwable> { throwable, serverRequest ->
 

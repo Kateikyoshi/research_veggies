@@ -20,7 +20,7 @@
       "fromLoggerBase": "org.springframework.security",
       "levelRanges": [
         {
-          "fromMinLevel": "INFO",
+          "fromMinLevel": "DEBUG",
           "toSinks": [
             "stdout"
           ]
