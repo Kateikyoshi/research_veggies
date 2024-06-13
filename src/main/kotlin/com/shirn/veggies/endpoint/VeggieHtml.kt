@@ -14,7 +14,7 @@ data class VeggieHtml(
     companion object {
         fun fromVeggieDb(veggieDb: VeggieDb) = VeggieHtml(
             id = veggieDb.id,
-            type = VeggieType.fromId(veggieDb.type ?: 0),
+            type = VeggieType.fromId(veggieDb.type ?: 0L),
             name = veggieDb.name
         )
     }

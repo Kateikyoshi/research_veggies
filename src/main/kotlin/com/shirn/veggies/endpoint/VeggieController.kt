@@ -5,12 +5,12 @@ import com.shirn.veggies.db.VeggieDb
 import com.shirn.veggies.db.VeggieRepository
 import io.klogging.Klogging
 import kotlinx.coroutines.flow.map
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Controller
 import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import kotlin.jvm.optionals.getOrNull
 
-@Component
+@Controller
 class VeggieController(
     private val veggieRepository: VeggieRepository,
     private val mapper: ObjectMapper
@@ -26,7 +26,7 @@ class VeggieController(
             "veggie",
             hashMapOf(
                 "veggiesSelect" to VeggieType.entries.map { it.name },
-                "veggieDb" to VeggieDb()
+                "veggieForm" to VeggieDb()
             )
         )
     }
@@ -72,7 +72,7 @@ class VeggieController(
             hashMapOf(
                 "savedName" to saved.name,
                 "veggiesSelect" to VeggieType.entries.map { it.name },
-                "veggieDb" to VeggieDb()
+                "veggieForm" to VeggieDb()
             )
         )
     }
@@ -92,6 +92,6 @@ class VeggieController(
         )
         val id = saved.id ?: throw IllegalStateException("Id can't be null! Is DB down...?")
 
-        return ok().bodyValueAndAwait(id)
+        return ok().bodyValueAndAwait("""{ "id":"$id" }""")
     }
 }

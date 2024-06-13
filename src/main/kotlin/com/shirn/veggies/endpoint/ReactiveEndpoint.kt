@@ -1,8 +1,6 @@
 package com.shirn.veggies.endpoint
 
 import org.slf4j.LoggerFactory
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.coRouter
@@ -12,21 +10,23 @@ import org.springframework.web.reactive.function.server.coRouter
  * https://docs.spring.io/spring-framework/reference/web/webflux-functional.html
  * https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.reactive.webflux.template-engines
  */
-@Configuration(proxyBeanMethods = false)
+//TODO: disable w/ config
+//@Configuration(proxyBeanMethods = false)
 class MyRoutingConfiguration {
 
-    @Bean
+    //@Bean
     fun monoRouterFunction(veggieController: VeggieController, userController: UserController) = coRouter {
-        GET("api/veggie", queryParam("id") { true }, veggieController::getVeggieApi2)
+        GET("/api/veggie", queryParam("id") { true }, veggieController::getVeggieApi2)
+        GET("/api/veggies", veggieController::getAllVeggies)
         accept(APPLICATION_JSON).nest {
-            POST("api/veggie", veggieController::createVeggieApi)
-            POST("api/user", userController::getUserApi)
+            POST("/api/veggie", veggieController::createVeggieApi)
+            POST("/api/user", userController::getUserApi)
         }
         GET("/register", userController::provideRegisterPage)
         POST("/register", userController::register)
 
         GET("/", veggieController::provideIndex)
-        GET("/veggie", veggieController::getAllVeggies)
+
         POST("/veggieForm", veggieController::createVeggieForm)
         GET("/veggie-manage", veggieController::provideVeggiePage)
 

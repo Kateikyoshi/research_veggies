@@ -45,7 +45,7 @@
              tabindex="0">
             <div class="row justify-content-md-left">
                 <div class="col-3 p-3">
-                    <form action="#" th:action="@{/veggieForm}" th:object="${veggieDb}" method="POST">
+                    <form action="#" th:action="@{/veggieForm}" th:object="${veggieForm}" method="POST">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" th:field="*{name}" id="floatingInput"
                                    placeholder="veggie name">
@@ -86,7 +86,7 @@
 </div>
 <script language="JavaScript">
     async function getVeggies() {
-    const resp = await fetch("/veggie", {
+    const resp = await fetch("/api/veggies", {
       method: 'GET'
     });
     const dominanceDiv = document.getElementById("showDominance");

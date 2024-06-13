@@ -11,7 +11,7 @@ import jakarta.annotation.PostConstruct
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitialization
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Controller
 import org.springframework.validation.BeanPropertyBindingResult
 import org.springframework.validation.BindingResult
 import org.springframework.validation.Errors
@@ -20,7 +20,7 @@ import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 
 @DependsOnDatabaseInitialization
-@Component
+@Controller
 class UserController(
     private val userRepository: UserRepository,
     //https://docs.spring.io/spring-framework/reference/web/webflux-functional.html#webflux-fn-handler-validation

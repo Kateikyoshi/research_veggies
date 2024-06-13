@@ -33,7 +33,7 @@ class HelloWebfluxSecurityConfig {
         return http {
             //https://docs.spring.io/spring-security/reference/reactive/authorization/authorize-http-requests.html
             authorizeExchange {
-                authorize("api/**", hasAnyAuthority(UserRole.SCOPE_ADMIN.name, UserRole.SCOPE_BASIC.name))
+                authorize("/api/**", hasAnyAuthority(UserRole.SCOPE_ADMIN.name, UserRole.SCOPE_BASIC.name))
                 authorize(pathMatchers("/", "/register"), permitAll)
 
                 authorize(pathMatchers(
