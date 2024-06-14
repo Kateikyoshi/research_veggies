@@ -1,7 +1,7 @@
 package com.shirn.veggies
 
 import com.shirn.veggies.db.*
-import com.shirn.veggies.endpoint.VeggieType
+import com.shirn.veggies.endpoint.model.VeggieType
 import io.r2dbc.spi.ConnectionFactory
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
@@ -21,11 +21,13 @@ import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories
 import org.springframework.test.context.ActiveProfiles
 
+//conflicts w/ another @Configuration in tests. So you can actually disable both and just import directly.
+//https://stackoverflow.com/a/59090558
 //@Configuration
 @EnableR2dbcRepositories
 class DatabaseConfig : AbstractR2dbcConfiguration() {
 
-    @Bean("god2")
+    @Bean("dbtestsConnFactory")
     override fun connectionFactory(): ConnectionFactory {
         return ConnectionFactoryBuilder.withUrl("r2dbc:h2:mem:///test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE").build()
     }

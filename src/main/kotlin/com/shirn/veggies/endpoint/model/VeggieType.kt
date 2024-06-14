@@ -1,4 +1,4 @@
-package com.shirn.veggies.endpoint
+package com.shirn.veggies.endpoint.model
 
 enum class VeggieType(val dbId: Long) {
     TOMATO(1),

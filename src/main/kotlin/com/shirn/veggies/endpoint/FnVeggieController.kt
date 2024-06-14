@@ -3,6 +3,8 @@ package com.shirn.veggies.endpoint
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.shirn.veggies.db.VeggieDb
 import com.shirn.veggies.db.VeggieRepository
+import com.shirn.veggies.endpoint.model.VeggieHtml
+import com.shirn.veggies.endpoint.model.VeggieType
 import io.klogging.Klogging
 import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Controller
@@ -11,7 +13,7 @@ import org.springframework.web.reactive.function.server.ServerResponse.ok
 import kotlin.jvm.optionals.getOrNull
 
 @Controller
-class VeggieController(
+class FnVeggieController(
     private val veggieRepository: VeggieRepository,
     private val mapper: ObjectMapper
 ) : Klogging {

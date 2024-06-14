@@ -11,6 +11,13 @@ spring:
     init:
       platform: h2
       schema-locations: 'classpath:schema-test-h2.sql'
+
+controller:
+  functional:
+    enabled: false
+  mvc:
+    enabled: false
+
 jwt:
   secret:
     #generate this with openssl or smth

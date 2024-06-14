@@ -3,11 +3,14 @@ package com.shirn.veggies.endpoint
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.shirn.veggies.db.*
+import com.shirn.veggies.endpoint.model.VeggieHtml
+import com.shirn.veggies.endpoint.model.VeggieType
 import com.shirn.veggies.security.JwtConfig
 import jakarta.validation.Valid
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactor.awaitSingleOrNull
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.http.MediaType
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
@@ -19,6 +22,11 @@ import org.springframework.web.bind.annotation.*
 /**
  * For MVC stuff, html, you know...
  */
+@ConditionalOnProperty(
+    name = ["controller.mvc.enabled"],
+    havingValue = "true",
+    matchIfMissing = false
+)
 @Controller
 class CoroutinesViewController(
     private val veggieRepository: VeggieRepository,
@@ -27,9 +35,13 @@ class CoroutinesViewController(
     private val jwtConfig: JwtConfig
 ) {
 
+    /**
+     * Any fun annotated w/ @ModelAttribute will modify
+     * all the models. Not very useful in this case.
+     */
     //@ModelAttribute
     fun addRegUser(model: Model) {
-        model["regUser"] = UserDb(name = "hhhhhh")
+        model["regUser"] = UserDb(name = "josh")
     }
 
     @GetMapping("/register")
@@ -42,9 +54,10 @@ class CoroutinesViewController(
      * Not used directly, called via form
      */
     @PostMapping("/register")
-    suspend fun registerUser(@ModelAttribute("regUser") @Valid userForm: UserDb,
-                             errors: BindingResult,
-                             model: Model
+    suspend fun registerUser(
+        @ModelAttribute("regUser") @Valid userForm: UserDb,
+        errors: BindingResult,
+        model: Model
     ): String {
         if (errors.hasErrors()) return "register"
 
@@ -73,9 +86,10 @@ class CoroutinesViewController(
      * Not used directly, called via form
      */
     @PostMapping("/veggieForm")
-    suspend fun createVeggieForm(@ModelAttribute("veggieForm") @Valid veggieHtml: VeggieHtml,
-                                 errors: BindingResult,
-                                 model: Model
+    suspend fun createVeggieForm(
+        @ModelAttribute("veggieForm") @Valid veggieHtml: VeggieHtml,
+        errors: BindingResult,
+        model: Model
     ): String {
         if (errors.hasErrors()) return "veggie"
 
@@ -118,6 +132,11 @@ class CoroutinesViewController(
 //https://docs.spring.io/spring-framework/reference/languages/kotlin/coroutines.html#controllers
 //mapping body
 //https://docs.spring.io/spring-framework/reference/web/webflux/controller/ann-methods/requestbody.html
+@ConditionalOnProperty(
+    name = ["controller.mvc.enabled"],
+    havingValue = "true",
+    matchIfMissing = false
+)
 @RestController
 class NotFnEndpoint(
     private val veggieRepository: VeggieRepository,

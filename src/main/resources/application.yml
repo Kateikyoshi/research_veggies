@@ -9,6 +9,12 @@ spring:
     init:
       platform: h2
 
+controller:
+  functional:
+    enabled: false
+  mvc:
+    enabled: false
+
 jwt:
   secret:
     #generate this with openssl or smth

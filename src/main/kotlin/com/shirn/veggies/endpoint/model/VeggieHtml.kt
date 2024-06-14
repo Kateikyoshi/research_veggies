@@ -1,4 +1,4 @@
-package com.shirn.veggies.endpoint
+package com.shirn.veggies.endpoint.model
 
 import com.shirn.veggies.db.VeggieDb
 
