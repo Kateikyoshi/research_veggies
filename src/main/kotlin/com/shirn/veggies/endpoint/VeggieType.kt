@@ -1,10 +1,10 @@
 package com.shirn.veggies.endpoint
 
 enum class VeggieType(val dbId: Long) {
-    TOMATO(0),
-    CUCUMBER(1),
-    BANANA(2),
-    ONION(3);
+    TOMATO(1),
+    CUCUMBER(2),
+    BANANA(3),
+    ONION(4);
 
     companion object {
         fun fromName(name: String): VeggieType {
