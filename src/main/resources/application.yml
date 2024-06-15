@@ -13,7 +13,7 @@ controller:
   functional:
     enabled: false
   mvc:
-    enabled: false
+    enabled: true
 
 jwt:
   secret:
