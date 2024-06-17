@@ -1,6 +1,9 @@
 package com.shirn.veggies.endpoint
 
-import com.shirn.veggies.db.*
+import com.shirn.veggies.db.UserRepository
+import com.shirn.veggies.db.VeggieRepository
+import com.shirn.veggies.db.VeggieTypeDb
+import com.shirn.veggies.db.VeggieTypeRepository
 import com.shirn.veggies.endpoint.model.VeggieType
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
@@ -11,19 +14,20 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
-@Import(EndpointDatabaseConfig::class)
+//@Import(EndpointDatabaseConfig::class)
 @AutoConfigureWebTestClient
-@SpringBootTest(properties = ["controller.functional.enabled=true"])
-@EnableAutoConfiguration
+@SpringBootTest(properties = [
+    "controller.functional.enabled=true",
+    "spring.r2dbc.url=r2dbc:h2:mem:///generalDb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+])
+//@EnableAutoConfiguration
 @ActiveProfiles("test")
 class FnEndpointTests {
 
