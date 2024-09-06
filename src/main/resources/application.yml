@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: veggies
+  r2dbc:
+    url: r2dbc:h2:mem:///./testdb;DB_CLOSE_DELAY=-1
+    username: goblin
+    password: goblin
+  sql:
+    init:
+      platform: h2
+
+controller:
+  functional:
+    enabled: false
+  mvc:
+    enabled: true
+
+jwt:
+  secret:
+    #generate this with openssl or smth
+    value: FSDGJSGASJG66235RSEGGJDSFSHGH34536
+    alg: HS256

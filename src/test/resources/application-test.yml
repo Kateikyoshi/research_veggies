@@ -1,0 +1,25 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: veggies1
+  r2dbc:
+    url: r2dbc:h2:mem:///./testdb1;DB_CLOSE_DELAY=-1
+    username: goblin
+    password: goblin
+  sql:
+    init:
+      platform: h2
+      schema-locations: 'classpath:schema-test-h2.sql'
+
+controller:
+  functional:
+    enabled: false
+  mvc:
+    enabled: false
+
+jwt:
+  secret:
+    #generate this with openssl or smth
+    value: FSDGJSGASJG66235RSEGGJDSFSHGH34536
+    alg: HS256
