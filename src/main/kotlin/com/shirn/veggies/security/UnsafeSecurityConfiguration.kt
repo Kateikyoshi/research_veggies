@@ -21,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec
 
 @Configuration
 @EnableWebFluxSecurity
-class HelloWebfluxSecurityConfig {
+class UnsafeSecurityConfiguration {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
@@ -47,6 +47,7 @@ class HelloWebfluxSecurityConfig {
             }
             formLogin { }
             httpBasic { }
+            logout {  }
             csrf { disable() }
         }
     }

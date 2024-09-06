@@ -17,6 +17,9 @@ class AdminInitializer(
     private val jwtHelper: JwtHelper
 ) {
 
+    /**
+     * @PostConstruct sucks
+     */
     @EventListener(ApplicationReadyEvent::class)
     suspend fun createAdmin() {
         val exists = userRepository.existsByName("admin").awaitSingle()
